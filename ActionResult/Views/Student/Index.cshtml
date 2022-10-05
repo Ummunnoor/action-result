@@ -1,0 +1,41 @@
+﻿@model List<Student>
+@if (@Model == null || @Model.Count() == 0)
+{
+    <h1>No Student yet</h1>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table">
+            <caption>List of Student</caption>
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var student in @Model)
+                {
+                    <tr>
+                        <th scope="row">@student.Id</th>
+                        <td>@student.FirstName</td>
+                        <td>@student.LastName</td>
+                        <td>@student.Email</td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn-primary btn" asp-action="View" asp-route-id=@student.Id>View</a>
+                                <a class="btn-warning btn" asp-action="Edit" asp-route-id=@student.Id>Edit</a>
+                                <a class="btn-danger btn" asp-action="Delete" asp-route-id=@student.Id>Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+}
